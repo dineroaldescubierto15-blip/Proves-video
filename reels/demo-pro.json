@@ -1,25 +1,160 @@
 {
   "titol": "Demo: el preu de l'habitatge",
   "marca": "@el_teu_usuari",
-  "colors": { "fons": "#0a0f1f", "fons2": "#14264d", "accent": "#ff4d6d", "text": "#ffffff" },
-  "presentador": { "color": "#ffc533", "accessori": "ulleres" },
+  "colors": {
+    "fons": "#0a0f1f",
+    "fons2": "#14264d",
+    "accent": "#ff4d6d",
+    "text": "#ffffff"
+  },
+  "presentador": {
+    "color": "#ffc533",
+    "accessori": "ulleres"
+  },
   "escenes": [
-    { "tipus": "titol", "text": "El lloguer **no para** de pujar", "subtext": "I aquestes dades ho demostren 👇", "durada": 3.5 },
-    { "tipus": "noticia", "font": "Diari Exemple", "data": "23 nov 2026", "etiqueta": "ECONOMIA", "imatge": "imatges/exemple-ciutat.svg", "titular": "El preu del lloguer marca un **nou rècord** a les grans ciutats", "durada": 4 },
-    { "tipus": "grafic", "grafic": "linia", "titol": "Preu mitjà del lloguer (€/mes)", "unitat": "€", "dades": [
-      { "etiqueta": "2020", "valor": 780 }, { "etiqueta": "2021", "valor": 810 }, { "etiqueta": "2022", "valor": 880 },
-      { "etiqueta": "2023", "valor": 960 }, { "etiqueta": "2024", "valor": 1040 }, { "etiqueta": "2025", "valor": 1120 } ],
-      "font": "Font: dades d'exemple", "durada": 4.5 },
-    { "tipus": "xifra", "valor": 43.6, "decimals": 1, "prefix": "+", "sufix": "%", "text": "en només **5 anys**", "font": "Font: dades d'exemple", "durada": 3.5 },
-    { "tipus": "grafic", "grafic": "barres", "titol": "% del sou que va al lloguer", "unitat": "%", "dades": [
-      { "etiqueta": "Recomanat", "valor": 30 }, { "etiqueta": "Mitjana", "valor": 38 }, { "etiqueta": "Joves", "valor": 52 } ],
-      "font": "Font: dades d'exemple", "durada": 4 },
-    { "tipus": "grafic", "grafic": "donut", "titol": "On va el teu sou?", "unitat": "%", "destaca": 0, "dades": [
-      { "etiqueta": "Habitatge", "valor": 45 }, { "etiqueta": "Menjar", "valor": 20 }, { "etiqueta": "Transport", "valor": 12 }, { "etiqueta": "Altres", "valor": 23 } ],
-      "durada": 4 },
-    { "tipus": "personatge", "text": "Llavors... **què podem fer** per estalviar?", "expressio": "pensatiu", "accio": "pensa", "personatge": { "color": "#ffc533", "accessori": "ulleres" }, "durada": 3.5 },
-    { "tipus": "imatge", "imatge": "imatges/exemple-ciutat.svg", "text": "Comparar barris pot estalviar-te **200 €/mes**", "credit": "Il·lustració d'exemple", "durada": 3.5 },
-    { "tipus": "personatge", "text": "Segueix-me i t'ho explico **pas a pas**!", "expressio": "content", "accio": "saluda", "personatge": { "color": "#ffc533", "accessori": "ulleres" }, "durada": 3.5 },
-    { "tipus": "final", "text": "Guarda'l!", "subtext": "I comparteix-lo amb qui busca pis", "durada": 3 }
+    {
+      "tipus": "titol",
+      "text": "El lloguer **no para** de pujar",
+      "subtext": "I aquestes dades ho demostren 👇",
+      "durada": 3.5
+    },
+    {
+      "tipus": "noticia",
+      "font": "Diari Exemple",
+      "data": "23 nov 2026",
+      "etiqueta": "ECONOMIA",
+      "imatge": "imatges/exemple-ciutat.svg",
+      "titular": "El preu del lloguer marca un **nou rècord** a les grans ciutats",
+      "durada": 4,
+      "url": "https://exemple.com/economia/lloguer-record",
+      "credit": "Il·lustració d'exemple"
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "linia",
+      "titol": "Preu mitjà del lloguer (€/mes)",
+      "unitat": "€",
+      "dades": [
+        {
+          "etiqueta": "2020",
+          "valor": 780
+        },
+        {
+          "etiqueta": "2021",
+          "valor": 810
+        },
+        {
+          "etiqueta": "2022",
+          "valor": 880
+        },
+        {
+          "etiqueta": "2023",
+          "valor": 960
+        },
+        {
+          "etiqueta": "2024",
+          "valor": 1040
+        },
+        {
+          "etiqueta": "2025",
+          "valor": 1120
+        }
+      ],
+      "font": "Font: dades d'exemple",
+      "durada": 4.5
+    },
+    {
+      "tipus": "xifra",
+      "valor": 43.6,
+      "decimals": 1,
+      "prefix": "+",
+      "sufix": "%",
+      "text": "en només **5 anys**",
+      "font": "Font: dades d'exemple",
+      "durada": 3.5
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "barres",
+      "titol": "% del sou que va al lloguer",
+      "unitat": "%",
+      "dades": [
+        {
+          "etiqueta": "Recomanat",
+          "valor": 30
+        },
+        {
+          "etiqueta": "Mitjana",
+          "valor": 38
+        },
+        {
+          "etiqueta": "Joves",
+          "valor": 52
+        }
+      ],
+      "font": "Font: dades d'exemple",
+      "durada": 4
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "donut",
+      "titol": "On va el teu sou?",
+      "unitat": "%",
+      "destaca": 0,
+      "dades": [
+        {
+          "etiqueta": "Habitatge",
+          "valor": 45
+        },
+        {
+          "etiqueta": "Menjar",
+          "valor": 20
+        },
+        {
+          "etiqueta": "Transport",
+          "valor": 12
+        },
+        {
+          "etiqueta": "Altres",
+          "valor": 23
+        }
+      ],
+      "durada": 4
+    },
+    {
+      "tipus": "personatge",
+      "text": "Llavors... **què podem fer** per estalviar?",
+      "expressio": "pensatiu",
+      "accio": "pensa",
+      "personatge": {
+        "color": "#ffc533",
+        "accessori": "ulleres"
+      },
+      "durada": 3.5
+    },
+    {
+      "tipus": "imatge",
+      "imatge": "imatges/exemple-ciutat.svg",
+      "text": "Comparar barris pot estalviar-te **200 €/mes**",
+      "credit": "Il·lustració d'exemple",
+      "durada": 3.5
+    },
+    {
+      "tipus": "personatge",
+      "text": "Segueix-me i t'ho explico **pas a pas**!",
+      "expressio": "content",
+      "accio": "saluda",
+      "personatge": {
+        "color": "#ffc533",
+        "accessori": "ulleres"
+      },
+      "durada": 3.5
+    },
+    {
+      "tipus": "final",
+      "text": "Guarda'l!",
+      "subtext": "I comparteix-lo amb qui busca pis",
+      "durada": 3
+    }
   ]
 }

@@ -6,6 +6,14 @@ import { font, SANS, SERIF } from "../estil";
 import { EscenaNoticia } from "../types";
 import { Marc, PropsEscena } from "./comu";
 
+const domini = (url: string) => {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return url;
+  }
+};
+
 /** Targeta de notícia genèrica (no imita cap mitjà concret) */
 export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, durada }) => {
   const f = useCurrentFrame();
@@ -76,6 +84,23 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
             alineacio="left"
             lletraALletra={false}
           />
+          {(escena.url || escena.credit) && (
+            <div
+              style={{
+                marginTop: 30,
+                paddingTop: 22,
+                borderTop: "2px solid #e6e3dc",
+                fontFamily: SANS,
+                fontSize: 28,
+                color: "#6b6b76",
+                lineHeight: 1.4,
+                opacity: tween(f, 30, 16),
+              }}
+            >
+              {escena.url && <div>🔗 Font: {domini(escena.url)}</div>}
+              {escena.credit && <div>📷 {escena.credit}</div>}
+            </div>
+          )}
         </div>
       </div>
     </Marc>

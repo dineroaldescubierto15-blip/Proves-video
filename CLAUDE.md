@@ -16,7 +16,7 @@ Es renderitzen a **GitHub Actions**, així que no cal cap ordinador encès.
    Tipus d'escena:
    - `titol`, `punt` (amb `numero`), `final` → text gran animat lletra a lletra.
    - `personatge` → mascota animada amb bombolla. `expressio`: content|sorpres|pensatiu|preocupat|enfadat; `accio`: parla|saluda|assenyala|celebra|pensa|quiet; `personatge`: {color, accessori: cap|ulleres|corbata|ulleres+corbata}.
-   - `noticia` → targeta amb `titular`, `font` (mitjà), `data`, `etiqueta` i `imatge` opcional.
+   - `noticia` → targeta amb `titular`, `font` (mitjà), `data`, `etiqueta`, `url` (es mostra el domini com a cita), `imatge` i `credit` opcionals.
    - `grafic` → `grafic`: barres|linia|donut, `titol`, `dades` [{etiqueta, valor}], `unitat`, `destaca` (índex), `font`.
    - `xifra` → número gran que compta (`valor`, `prefix`, `sufix`, `decimals`, `text`, `font`).
    - `imatge` → foto a pantalla completa amb `text` i `credit`.
@@ -30,8 +30,18 @@ Es renderitzen a **GitHub Actions**, així que no cal cap ordinador encès.
    (en entorns sense descàrrega de Chrome: `BROWSER_EXECUTABLE=/opt/pw-browsers/chromium`).
 4. Fes commit i push. Digues a l'usuari que en ~2–4 minuts tindrà l'MP4 a Releases → `videos`.
 
+## Notícies reals
+- Busca-les amb WebSearch i obre l'article per comprovar què diu de veritat. Mai no t'inventis un titular.
+- A `titular` posa el titular original o un resum fidel i curt; a `font` el nom del mitjà, a `data` la data de publicació i a `url` l'enllaç.
+- Les xifres de gràfics i `xifra` han de sortir d'aquestes fonts (o d'organismes oficials) i s'han de citar al camp `font`.
+- No facis servir la foto de l'article (té drets): busca'n una de lliure amb l'script d'imatges.
+
 ## Imatges
-Puja-les a `public/imatges/` i referencia-les com `"imatges/nom.jpg"`, o fes servir una URL https directa a la imatge.
+**Cerca automàtica:** `NODE_USE_ENV_PROXY=1 node scripts/imatge.mjs "consulta en anglès" [--font openverse|pexels|unsplash] [--nom nom] [--horitzontal]`
+retorna `{imatge, credit}`: copia'ls al JSON (`imatge` + `credit`) i queda anotat a `public/imatges/CREDITS.md`.
+Openverse no necessita clau; Pexels i Unsplash llegeixen `PEXELS_API_KEY` i `UNSPLASH_ACCESS_KEY` de l'entorn.
+
+També es poden pujar a mà a `public/imatges/` i referenciar com `"imatges/nom.jpg"`, o fes servir una URL https directa a la imatge.
 Fes servir imatges pròpies, amb llicència lliure (Unsplash, Pexels, Wikimedia) o captures citant la font. Si la URL no existeix el render falla.
 
 ## Música

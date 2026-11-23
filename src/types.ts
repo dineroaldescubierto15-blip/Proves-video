@@ -46,6 +46,10 @@ export type EscenaNoticia = Base & {
   imatge?: string;
   /** Etiqueta superior. Per defecte "NOTÍCIA" */
   etiqueta?: string;
+  /** Enllaç a l'article original: se'n mostra el domini com a cita */
+  url?: string;
+  /** Crèdit de la foto (autor · llicència) */
+  credit?: string;
 };
 
 export type Dada = { etiqueta: string; valor: number };
