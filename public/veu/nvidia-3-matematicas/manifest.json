@@ -1,0 +1,37 @@
+{
+ "empremta": "fae00db40e74b3ee",
+ "total_s": 40.17,
+ "musica": "veu/nvidia-3-matematicas/musica.wav",
+ "escenes": {
+  "0": {
+   "audio": "veu/nvidia-3-matematicas/escena-00.wav",
+   "durada": 6.133333333333334,
+   "veu_s": 5.44
+  },
+  "1": {
+   "audio": "veu/nvidia-3-matematicas/escena-01.wav",
+   "durada": 9.533333333333333,
+   "veu_s": 8.84
+  },
+  "2": {
+   "audio": "veu/nvidia-3-matematicas/escena-02.wav",
+   "durada": 5.266666666666667,
+   "veu_s": 4.57
+  },
+  "3": {
+   "audio": "veu/nvidia-3-matematicas/escena-03.wav",
+   "durada": 7.766666666666667,
+   "veu_s": 7.07
+  },
+  "4": {
+   "audio": "veu/nvidia-3-matematicas/escena-04.wav",
+   "durada": 6.9,
+   "veu_s": 6.21
+  },
+  "5": {
+   "audio": "veu/nvidia-3-matematicas/escena-05.wav",
+   "durada": 6.566666666666666,
+   "veu_s": 5.85
+  }
+ }
+}

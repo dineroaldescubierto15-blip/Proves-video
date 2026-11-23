@@ -1,0 +1,42 @@
+{
+ "empremta": "54ad503b55429615",
+ "total_s": 47.93,
+ "musica": "veu/nvidia-1-caida/musica.wav",
+ "escenes": {
+  "0": {
+   "audio": "veu/nvidia-1-caida/escena-00.wav",
+   "durada": 4.8,
+   "veu_s": 4.12
+  },
+  "1": {
+   "audio": "veu/nvidia-1-caida/escena-01.wav",
+   "durada": 15.4,
+   "veu_s": 14.68
+  },
+  "2": {
+   "audio": "veu/nvidia-1-caida/escena-02.wav",
+   "durada": 7.1,
+   "veu_s": 6.39
+  },
+  "3": {
+   "audio": "veu/nvidia-1-caida/escena-03.wav",
+   "durada": 4.2,
+   "veu_s": 3.51
+  },
+  "4": {
+   "audio": "veu/nvidia-1-caida/escena-04.wav",
+   "durada": 6.233333333333333,
+   "veu_s": 5.52
+  },
+  "5": {
+   "audio": "veu/nvidia-1-caida/escena-05.wav",
+   "durada": 7.233333333333333,
+   "veu_s": 6.53
+  },
+  "6": {
+   "audio": "veu/nvidia-1-caida/escena-06.wav",
+   "durada": 5.366666666666666,
+   "veu_s": 4.66
+  }
+ }
+}

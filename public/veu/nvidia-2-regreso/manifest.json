@@ -1,0 +1,42 @@
+{
+ "empremta": "2e34d17d0c236666",
+ "total_s": 47.83,
+ "musica": "veu/nvidia-2-regreso/musica.wav",
+ "escenes": {
+  "0": {
+   "audio": "veu/nvidia-2-regreso/escena-00.wav",
+   "durada": 5.166666666666667,
+   "veu_s": 4.46
+  },
+  "1": {
+   "audio": "veu/nvidia-2-regreso/escena-01.wav",
+   "durada": 7.166666666666667,
+   "veu_s": 6.47
+  },
+  "2": {
+   "audio": "veu/nvidia-2-regreso/escena-02.wav",
+   "durada": 9.3,
+   "veu_s": 8.61
+  },
+  "3": {
+   "audio": "veu/nvidia-2-regreso/escena-03.wav",
+   "durada": 6.833333333333333,
+   "veu_s": 6.14
+  },
+  "4": {
+   "audio": "veu/nvidia-2-regreso/escena-04.wav",
+   "durada": 6.4,
+   "veu_s": 5.69
+  },
+  "5": {
+   "audio": "veu/nvidia-2-regreso/escena-05.wav",
+   "durada": 8.466666666666667,
+   "veu_s": 7.75
+  },
+  "6": {
+   "audio": "veu/nvidia-2-regreso/escena-06.wav",
+   "durada": 6.9,
+   "veu_s": 6.21
+  }
+ }
+}
