@@ -1,0 +1,16 @@
+{
+  "titol": "Tres eines gratis",
+  "colors": {
+    "fons": "#0b0b14",
+    "fons2": "#24123a",
+    "accent": "#ff3d71",
+    "text": "#ffffff"
+  },
+  "escenes": [
+    { "tipus": "titol", "text": "3 eines gratis", "subtext": "perquè Claude t'animi un vídeo", "durada": 3 },
+    { "tipus": "punt", "numero": "1", "text": "Remotion", "subtext": "El vídeo s'escriu com una web en React", "durada": 3.5 },
+    { "tipus": "punt", "numero": "2", "text": "HyperFrames", "subtext": "HTML → MP4, fotograma a fotograma", "durada": 3.5 },
+    { "tipus": "punt", "numero": "3", "text": "GSAP", "subtext": "Corbes, rebots i text lletra a lletra", "durada": 3.5 },
+    { "tipus": "final", "text": "Guarda'l!", "subtext": "Quina instal·les primer? 1, 2 o 3", "durada": 3 }
+  ]
+}

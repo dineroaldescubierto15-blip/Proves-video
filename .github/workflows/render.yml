@@ -1,0 +1,74 @@
+name: Renderitza reels
+
+on:
+  push:
+    branches: ["**"]
+    paths: ["reels/**", "src/**", "public/**"]
+  workflow_dispatch:
+    inputs:
+      reel:
+        description: "Fitxer a renderitzar (ex: reels/exemple.json). Buit = tots"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: render-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Dependències del navegador de Remotion
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q fonts-noto-color-emoji fonts-inter || true
+          npx remotion browser ensure
+
+      - name: Tria quins reels renderitzar
+        id: tria
+        run: |
+          if [ -n "${{ github.event.inputs.reel }}" ]; then
+            FILES="${{ github.event.inputs.reel }}"
+          elif [ "${{ github.event_name }}" = "push" ] && git rev-parse HEAD~1 >/dev/null 2>&1 \
+               && ! git diff --name-only HEAD~1 HEAD | grep -qE '^(src|public)/'; then
+            # només han canviat JSON: renderitza només aquests
+            FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'reels/*.json' | tr '\n' ' ')
+          else
+            FILES=""   # tots
+          fi
+          echo "files=$FILES" >> "$GITHUB_OUTPUT"
+          echo "Reels: ${FILES:-tots}"
+
+      - name: Renderitza
+        run: node scripts/render-all.mjs ${{ steps.tria.outputs.files }}
+
+      - name: Puja els MP4 (artefacte)
+        uses: actions/upload-artifact@v4
+        with:
+          name: reels-${{ github.run_number }}
+          path: out/*.mp4
+          retention-days: 30
+
+      - name: Publica els MP4 a la release "videos" (enllaç directe per al mòbil)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view videos >/dev/null 2>&1 || \
+            gh release create videos --title "Vídeos renderitzats" --notes "Els últims MP4 de cada reel. S'actualitzen automàticament."
+          gh release upload videos out/*.mp4 --clobber

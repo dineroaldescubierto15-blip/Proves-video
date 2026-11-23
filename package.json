@@ -1,0 +1,25 @@
+{
+  "name": "reels-studio",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "studio": "remotion studio",
+    "render": "node scripts/render-all.mjs",
+    "typecheck": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@remotion/cli": "^4.0.546",
+    "gsap": "^3.15.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.546"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^5.9.3"
+  },
+  "private": true
+}
