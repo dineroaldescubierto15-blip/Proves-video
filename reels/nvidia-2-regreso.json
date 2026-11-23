@@ -1,0 +1,98 @@
+{
+  "estil": "csf",
+  "marca": "CSF",
+  "avisLegal": "Contenido informativo, no es asesoramiento financiero.",
+  "titol": "Nvidia · Parte 2: el regreso",
+  "musicaSeed": 12,
+  "escenes": [
+    {
+      "tipus": "titol",
+      "etiqueta": "Actualidad · Parte 2 de 3",
+      "text": "Nvidia sube más de un **30 %** en un día",
+      "durada": 3.4,
+      "veu": "Nvidia ha llegado a subir más de un treinta por ciento en un solo día. ¿Qué ha cambiado?"
+    },
+    {
+      "tipus": "noticia",
+      "font": "Nvidia · comunicado a la SEC",
+      "data": "23 nov 2026",
+      "etiqueta": "COMUNICADO",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000090/nov23pressrelease.htm",
+      "durada": 5,
+      "titular": "Jensen Huang, restituido como presidente y consejero delegado, con efecto inmediato",
+      "veu": "Hoy, el consejo ha restituido a Jensen Huang como consejero delegado, con efecto inmediato. Y por unanimidad."
+    },
+    {
+      "tipus": "titol",
+      "etiqueta": "Por qué",
+      "text": "El consejo escuchó al **Gobierno de EE. UU.**",
+      "durada": 5,
+      "subtext": "Pero la investigación independiente sigue abierta.",
+      "nota": "Fuente: Nvidia, comunicado del 23/11/2026 (SEC).",
+      "veu": "Según el comunicado, antes de decidir, el consejo escuchó a altos cargos del Gobierno de Estados Unidos. Pero ojo, la investigación sigue abierta."
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "linia",
+      "titol": "Caída y rebote, en dólares",
+      "unitat": " $",
+      "durada": 5,
+      "dades": [
+        {
+          "etiqueta": "13/11",
+          "valor": 162.85
+        },
+        {
+          "etiqueta": "17/11",
+          "valor": 155.46
+        },
+        {
+          "etiqueta": "18/11",
+          "valor": 150.96
+        },
+        {
+          "etiqueta": "19/11",
+          "valor": 145.98
+        },
+        {
+          "etiqueta": "20/11",
+          "valor": 125.53
+        },
+        {
+          "etiqueta": "Hoy",
+          "valor": 164.27
+        }
+      ],
+      "font": "Cierres diarios; hoy, dato intradía (23/11/2026). Fuentes: Investing.com y Nvidia Relación con Inversores.",
+      "veu": "La reacción ha sido inmediata. De ciento veinticinco dólares al cierre del viernes, a más de ciento sesenta hoy."
+    },
+    {
+      "tipus": "xifra",
+      "valor": 6.7,
+      "decimals": 1,
+      "prefix": "+",
+      "sufix": " %",
+      "text": "el **Nasdaq**, el índice tecnológico, a media sesión",
+      "durada": 4,
+      "nota": "Dato intradía del 23/11/2026. Fuente: Infobae.",
+      "veu": "Y no solo Nvidia. El Nasdaq, el índice tecnológico, ha llegado a subir cerca de un siete por ciento."
+    },
+    {
+      "tipus": "xifra",
+      "valor": 12,
+      "prefix": "−",
+      "sufix": " %",
+      "text": "aún por debajo del **6 de noviembre**, antes de la crisis",
+      "durada": 4.5,
+      "nota": "164,27 $ (intradía de hoy) frente a 186,64 $ (cierre del 6/11). Fuente: Investing.com.",
+      "veu": "Aun así, sigue un doce por ciento por debajo de donde estaba antes de la crisis. Y los datos de hoy son de media sesión: pueden cambiar al cierre."
+    },
+    {
+      "tipus": "final",
+      "text": "¿Por qué un **+30 %** no lo arregla?",
+      "subtext": "Lo vemos en la parte 3. Síguenos para no perdértela.",
+      "durada": 4,
+      "veu": "¿Y por qué subir un treinta por ciento no compensa una caída del treinta? Lo vemos en la parte tres. Síguenos."
+    }
+  ]
+}

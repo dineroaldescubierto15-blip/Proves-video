@@ -3,7 +3,7 @@ name: Renderitza reels
 on:
   push:
     branches: ["**"]
-    paths: ["reels/**", "src/**", "public/**"]
+    paths: ["reels/**", "src/**", "public/**", "scripts/**"]
   workflow_dispatch:
     inputs:
       reel:
@@ -16,12 +16,17 @@ permissions:
 
 concurrency:
   group: render-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
+
+env:
+  # Versió fixada del repositori de Capital Sin Filtros d'on es fa servir la veu oficial (sense modificar-la)
+  CSF_MEDIA_REF: 2ce2c219596ba35261276c38fa792ad0d32ce052
+  HF_HUB_DISABLE_XET: "1"
 
 jobs:
   render:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: ubuntu-24.04
+    timeout-minutes: 240
     steps:
       - uses: actions/checkout@v4
         with:
@@ -32,13 +37,9 @@ jobs:
           node-version: 22
           cache: npm
 
-      - run: npm ci
-
-      - name: Dependències del navegador de Remotion
-        run: |
-          sudo apt-get update -q
-          sudo apt-get install -y -q fonts-noto-color-emoji fonts-inter || true
-          npx remotion browser ensure
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
       - name: Tria quins reels renderitzar
         id: tria
@@ -46,14 +47,83 @@ jobs:
           if [ -n "${{ github.event.inputs.reel }}" ]; then
             FILES="${{ github.event.inputs.reel }}"
           elif [ "${{ github.event_name }}" = "push" ] && git rev-parse HEAD~1 >/dev/null 2>&1 \
-               && ! git diff --name-only HEAD~1 HEAD | grep -qE '^(src|public)/'; then
-            # només han canviat JSON: renderitza només aquests
+               && ! git diff --name-only HEAD~1 HEAD | grep -qE '^(src|public|scripts)/'; then
             FILES=$(git diff --name-only --diff-filter=AM HEAD~1 HEAD -- 'reels/*.json' | tr '\n' ' ')
           else
-            FILES=""   # tots
+            FILES=$(ls reels/*.json | tr '\n' ' ')
           fi
           echo "files=$FILES" >> "$GITHUB_OUTPUT"
-          echo "Reels: ${FILES:-tots}"
+          echo "Reels: $FILES"
+          pip install -q numpy
+          VEU=""
+          for f in $FILES; do
+            python scripts/veu_csf.py "$f" --comprova || { [ $? -eq 3 ] && VEU="$VEU $f"; }
+          done
+          echo "veu=$VEU" >> "$GITHUB_OUTPUT"
+          echo "Reels que necessiten veu: ${VEU:-cap}"
+
+      # ---------- Veu oficial de CSF (només si algun reel té guió nou) ----------
+      - name: Descarrega csf-media (veu oficial, versió fixada)
+        if: steps.tria.outputs.veu != ''
+        uses: actions/checkout@v4
+        with:
+          repository: dineroaldescubierto15-blip/csf-media
+          ref: ${{ env.CSF_MEDIA_REF }}
+          path: csf-media
+          sparse-checkout: |
+            generator
+            voices
+
+      - name: Dependències de la veu (les mateixes versions que csf-media)
+        if: steps.tria.outputs.veu != ''
+        run: |
+          sudo apt-get update -q
+          sudo apt-get install -y -q ffmpeg sox
+          python -m pip install -q --upgrade pip setuptools wheel
+          python -m pip install -q -r csf-media/generator/requirements-reel.txt --extra-index-url https://download.pytorch.org/whl/cpu
+
+      - name: Caché del model de veu (Hugging Face)
+        if: steps.tria.outputs.veu != ''
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/huggingface
+          key: hf-qwen3-tts-1.7b-base-v1
+
+      - name: Caché de la veu per escena
+        if: steps.tria.outputs.veu != ''
+        uses: actions/cache@v4
+        with:
+          path: csf-media/generator/.voice_cache
+          key: veu-${{ github.run_id }}
+          restore-keys: veu-
+
+      - name: Genera la veu en off
+        if: steps.tria.outputs.veu != ''
+        run: |
+          for f in ${{ steps.tria.outputs.veu }}; do
+            python scripts/veu_csf.py "$f" --csf csf-media
+          done
+
+      - name: Desa la veu al repositori
+        if: steps.tria.outputs.veu != ''
+        run: |
+          git config user.name "reels-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/veu
+          git commit -m "Veu en off generada per: ${{ steps.tria.outputs.veu }}" || exit 0
+          for i in 1 2 3 4 5; do
+            git pull --rebase origin "${GITHUB_REF_NAME}" && git push origin "HEAD:${GITHUB_REF_NAME}" && exit 0
+            sleep 10
+          done
+          exit 1
+
+      # ---------- Vídeo ----------
+      - run: npm ci
+
+      - name: Navegador de Remotion
+        run: |
+          sudo apt-get install -y -q fonts-noto-color-emoji || true
+          npx remotion browser ensure
 
       - name: Renderitza
         run: node scripts/render-all.mjs ${{ steps.tria.outputs.files }}

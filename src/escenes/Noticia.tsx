@@ -3,6 +3,7 @@ import { Img, useCurrentFrame } from "remotion";
 import { tween } from "../anim";
 import { TextRic } from "../components/TextRic";
 import { font, SANS, SERIF } from "../estil";
+import { useTema } from "../tema";
 import { EscenaNoticia } from "../types";
 import { Marc, PropsEscena } from "./comu";
 
@@ -17,7 +18,9 @@ const domini = (url: string) => {
 /** Targeta de notícia genèrica (no imita cap mitjà concret) */
 export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, durada }) => {
   const f = useCurrentFrame();
-  const targeta = tween(f, 0, 26, "power4.out");
+  const t = useTema();
+  const titular = t.sobri ? SANS : SERIF;
+  const targeta = tween(f, 0, t.sobri ? 18 : 26, "power4.out");
   const imatgeZoom = 1.12 - 0.12 * tween(f, 0, durada, "none");
   const etiqueta = tween(f, 14, 14, "back.out(2)");
 
@@ -25,12 +28,15 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
     <Marc durada={durada} padding={70} zoom={false}>
       <div
         style={{
-          width: 940,
-          background: "#fbfaf7",
-          borderRadius: 28,
+          width: t.sobri ? 840 : 940,
+          background: t.contrast,
+          borderRadius: t.sobri ? 20 : 28,
           overflow: "hidden",
-          boxShadow: "0 40px 120px rgba(0,0,0,0.5)",
-          transform: `translateY(${(1 - targeta) * 500}px) rotate(${(1 - targeta) * -6}deg)`,
+          boxShadow: t.sobri ? undefined : "0 40px 120px rgba(0,0,0,0.5)",
+          opacity: t.sobri ? targeta : 1,
+          transform: t.sobri
+            ? `translateY(${(1 - targeta) * 80}px)`
+            : `translateY(${(1 - targeta) * 500}px) rotate(${(1 - targeta) * -6}deg)`,
         }}
       >
         <div
@@ -43,7 +49,7 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
             fontFamily: SANS,
           }}
         >
-          <div style={{ fontFamily: SERIF, fontWeight: 900, fontSize: 44, color: "#14141f" }}>{escena.font}</div>
+          <div style={{ fontFamily: titular, fontWeight: 900, fontSize: t.sobri ? 38 : 44, color: "#14141f" }}>{escena.font}</div>
           {escena.data && <div style={{ fontSize: 32, color: "#6b6b76", fontWeight: 500 }}>{escena.data}</div>}
         </div>
         {escena.imatge && (
@@ -58,8 +64,8 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
           <div
             style={{
               display: "inline-block",
-              background: colors.accent,
-              color: "#fff",
+              background: t.sobri ? "#0A0A0A" : colors.accent,
+              color: t.sobri ? colors.accent : "#fff",
               fontFamily: SANS,
               fontWeight: 900,
               fontSize: 30,
@@ -76,11 +82,11 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
           <TextRic
             text={escena.titular}
             inici={18}
-            mida={escena.titular.length > 70 ? 58 : 68}
-            pes={900}
-            familia={SERIF}
+            mida={escena.titular.length > 70 ? 56 : 66}
+            pes={t.sobri ? 800 : 900}
+            familia={titular}
             color="#14141f"
-            accent={`${colors.accent}66`}
+            accent={t.sobri ? "#0A0A0A" : `${colors.accent}66`}
             alineacio="left"
             lletraALletra={false}
           />
@@ -97,8 +103,8 @@ export const Noticia: React.FC<PropsEscena<EscenaNoticia>> = ({ escena, colors, 
                 opacity: tween(f, 30, 16),
               }}
             >
-              {escena.url && <div>🔗 Font: {domini(escena.url)}</div>}
-              {escena.credit && <div>📷 {escena.credit}</div>}
+              {escena.url && <div>{t.sobri ? "Fuente: " : "🔗 Font: "}{domini(escena.url)}</div>}
+              {escena.credit && <div>{t.sobri ? "Foto: " : "📷 "}{escena.credit}</div>}
             </div>
           )}
         </div>

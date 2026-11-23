@@ -1,0 +1,119 @@
+{
+  "estil": "csf",
+  "marca": "CSF",
+  "avisLegal": "Contenido informativo, no es asesoramiento financiero.",
+  "titol": "Nvidia · Parte 1: la caída",
+  "musicaSeed": 11,
+  "escenes": [
+    {
+      "tipus": "titol",
+      "etiqueta": "Actualidad · Parte 1 de 3",
+      "text": "Nvidia perdió **un tercio** de su valor en dos semanas",
+      "durada": 3.4,
+      "veu": "Nvidia perdió un tercio de su valor en solo dos semanas. ¿Qué ha pasado?"
+    },
+    {
+      "tipus": "cronologia",
+      "titol": "Cómo empezó",
+      "durada": 7,
+      "fets": [
+        {
+          "data": "8 nov",
+          "text": "El consejo abre una investigación independiente sobre su CEO"
+        },
+        {
+          "data": "11 nov",
+          "text": "Jensen Huang, fundador y CEO, dimite",
+          "destacat": true
+        },
+        {
+          "data": "12 nov",
+          "text": "La directora financiera, Colette Kress, pasa a CEO interina"
+        }
+      ],
+      "nota": "Fuente: Nvidia, comunicados del 8 y el 12/11/2026 (SEC). La investigación sigue abierta.",
+      "veu": "El ocho de noviembre, el consejo abrió una investigación, tras publicarse que su fundador, Jensen Huang, había sido objetivo de una operación de inteligencia extranjera. Tres días después, Huang dimitió. Y la directora financiera pasó a dirigir la empresa de forma interina."
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "linia",
+      "titol": "Cotización de Nvidia, en dólares",
+      "unitat": " $",
+      "durada": 5,
+      "dades": [
+        {
+          "etiqueta": "6/11",
+          "valor": 186.64
+        },
+        {
+          "etiqueta": "9/11",
+          "valor": 178.67
+        },
+        {
+          "etiqueta": "11/11",
+          "valor": 173.73
+        },
+        {
+          "etiqueta": "12/11",
+          "valor": 166.19
+        },
+        {
+          "etiqueta": "13/11",
+          "valor": 162.85
+        },
+        {
+          "etiqueta": "17/11",
+          "valor": 155.46
+        },
+        {
+          "etiqueta": "18/11",
+          "valor": 150.96
+        },
+        {
+          "etiqueta": "19/11",
+          "valor": 145.98
+        },
+        {
+          "etiqueta": "20/11",
+          "valor": 125.53
+        }
+      ],
+      "font": "Fuente: cierres diarios, Investing.com y Nvidia Relación con Inversores.",
+      "veu": "En bolsa, el golpe fue enorme. En dos semanas, la acción pasó de ciento ochenta y seis dólares a ciento veinticinco."
+    },
+    {
+      "tipus": "xifra",
+      "valor": 14,
+      "prefix": "−",
+      "sufix": " %",
+      "text": "en un solo día: el **viernes 20**",
+      "durada": 3.5,
+      "nota": "De 145,98 $ a 125,53 $ al cierre. Fuente: Investing.com.",
+      "veu": "Solo el viernes veinte, cayó un catorce por ciento en un día."
+    },
+    {
+      "tipus": "xifra",
+      "valor": 103,
+      "prefix": "+",
+      "sufix": " %",
+      "text": "de ingresos frente a hace un año, presentados **en plena crisis**",
+      "durada": 4,
+      "nota": "Fuente: Nvidia, resultados del 3.er trimestre fiscal 2027 (17/11/2026): 115.800 M$.",
+      "veu": "Y eso que, en plena crisis, presentó unos ingresos un ciento tres por ciento más altos que hace un año."
+    },
+    {
+      "tipus": "titol",
+      "text": "La bolsa no solo mira los números. También mira **quién manda**.",
+      "durada": 3.5,
+      "subtext": "Se llama riesgo de persona clave.",
+      "veu": "La lección: la bolsa no solo mira los números. También mira quién dirige la empresa. Se llama riesgo de persona clave."
+    },
+    {
+      "tipus": "final",
+      "text": "Y hoy, **giro total**.",
+      "subtext": "En la parte 2: la vuelta de Huang y el rebote. Síguenos para no perdértela.",
+      "durada": 4,
+      "veu": "Pero hoy, giro total. Te lo contamos en la parte dos. Síguenos para no perdértela."
+    }
+  ]
+}

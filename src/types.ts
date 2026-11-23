@@ -13,11 +13,26 @@ export type PersonatgeConfig = {
 };
 
 type Base = {
-  /** Segons que dura l'escena (per defecte 3) */
+  /** Segons que dura l'escena (per defecte 3). Amb veu, com a mínim el que dura la veu + 0,7 s */
   durada?: number;
+  /** Guió de la veu en off d'aquesta escena (números en lletres). Es genera a GitHub Actions */
+  veu?: string;
+  /** Petit text a sobre del títol (p. ex. "Actualidad · Parte 1 de 3") */
+  etiqueta?: string;
+  /** Línia petita a sota (fonts, matisos) */
+  nota?: string;
+  /** (Generat) fitxer d'àudio de la veu dins de /public */
+  audio?: string;
 };
 
 export type EscenaTitol = Base & { tipus: "titol"; text: string; subtext?: string };
+
+/** Cronologia: dates i fets que van apareixent */
+export type EscenaCronologia = Base & {
+  tipus: "cronologia";
+  titol?: string;
+  fets: { data: string; text: string; destacat?: boolean }[];
+};
 export type EscenaPunt = Base & {
   tipus: "punt";
   numero?: string;
@@ -96,12 +111,21 @@ export type Escena =
   | EscenaNoticia
   | EscenaGrafic
   | EscenaXifra
-  | EscenaImatge;
+  | EscenaImatge
+  | EscenaCronologia;
 
 export type Colors = { fons: string; fons2: string; accent: string; text: string };
 
 export type ReelProps = {
   titol: string;
+  /** "vibrant" (per defecte) o "csf" (manual de marca de Capital Sin Filtros) */
+  estil?: "vibrant" | "csf";
+  /** Text legal petit a l'última escena */
+  avisLegal?: string;
+  /** Llavor de la música original generada (estil csf) */
+  musicaSeed?: number;
+  /** Llavor de la veu (només per repetir una presa) */
+  veuSeed?: number;
   colors?: Partial<Colors>;
   /** Nom d'un fitxer d'àudio dins de /public (opcional) */
   musica?: string;
@@ -117,3 +141,5 @@ export const DURADA_PER_DEFECTE = 3;
 export const TRANSICIO = 12; // frames de solapament entre escenes
 
 export const segonsEscena = (e: Escena) => e.durada ?? DURADA_PER_DEFECTE;
+/** Segons entre l'inici de l'escena i l'inici de la veu */
+export const VEU_RETARD = 0.2;

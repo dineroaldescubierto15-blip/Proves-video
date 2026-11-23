@@ -1,6 +1,7 @@
 import React from "react";
 import { useCurrentFrame } from "remotion";
 import { tween } from "../anim";
+import { useTema } from "../tema";
 
 /** Divideix "text amb **paraula** destacada" en trossos */
 const trossos = (text: string) =>
@@ -9,6 +10,27 @@ const trossos = (text: string) =>
   );
 
 export const textPla = (text: string) => text.replace(/\*\*/g, "");
+
+type Segment = { text: string; destacat: boolean };
+/** Llista de paraules; cada paraula pot tenir trossos destacats i no destacats ("**manda**." → manda + .) */
+export const paraules = (text: string): Segment[][] => {
+  const out: Segment[][] = [];
+  let enganxa = false;
+  for (const tros of trossos(text)) {
+    const parts = tros.text.split(/( +)/);
+    for (const part of parts) {
+      if (part === "") continue;
+      if (/^ +$/.test(part)) {
+        enganxa = false;
+        continue;
+      }
+      if (enganxa && out.length) out[out.length - 1].push({ text: part, destacat: tros.destacat });
+      else out.push([{ text: part, destacat: tros.destacat }]);
+      enganxa = true;
+    }
+  }
+  return out;
+};
 
 /**
  * Text que entra lletra a lletra (corba "back.out" de GSAP).
@@ -36,6 +58,12 @@ export const TextRic: React.FC<{
   lletraALletra = true,
 }) => {
   const frame = useCurrentFrame();
+  const tema = useTema();
+  if (tema.sobri) {
+    return (
+      <TextSobri text={text} inici={inici} mida={mida} color={color} accent={accent} pes={pes} alineacio={alineacio} />
+    );
+  }
   let i = 0;
   const totalLletres = textPla(text).length;
   const fiLletres = inici + totalLletres * 1.4 + 10;
@@ -111,6 +139,60 @@ export const TextRic: React.FC<{
             );
           }),
       )}
+    </div>
+  );
+};
+
+/**
+ * Versió sòbria (estil csf): paraula a paraula, puja i apareix (corba power3.out),
+ * i les paraules **destacades** es pinten en daurat.
+ */
+const TextSobri: React.FC<{
+  text: string;
+  inici: number;
+  mida: number;
+  color: string;
+  accent: string;
+  pes: number;
+  alineacio: "center" | "left";
+}> = ({ text, inici, mida, color, accent, pes, alineacio }) => {
+  const frame = useCurrentFrame();
+  let n = 0;
+  return (
+    <div
+      style={{
+        fontSize: mida,
+        fontWeight: pes,
+        color,
+        lineHeight: 1.06,
+        letterSpacing: `${-0.035 * mida}px`,
+        textAlign: alineacio,
+        display: "flex",
+        flexWrap: "wrap",
+        justifyContent: alineacio === "center" ? "center" : "flex-start",
+        columnGap: mida * 0.24,
+      }}
+    >
+      {paraules(text).map((segs, pi) => {
+        const p = tween(frame, inici + n++ * 2, 15, "power3.out");
+        return (
+          <span
+            key={pi}
+            style={{
+              display: "inline-block",
+              whiteSpace: "nowrap",
+              opacity: p,
+              transform: `translateY(${(1 - p) * 50}px)`,
+            }}
+          >
+            {segs.map((sg, si) => (
+              <span key={si} style={{ color: sg.destacat ? accent : color }}>
+                {sg.text}
+              </span>
+            ))}
+          </span>
+        );
+      })}
     </div>
   );
 };

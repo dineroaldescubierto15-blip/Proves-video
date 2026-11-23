@@ -1,0 +1,88 @@
+{
+  "estil": "csf",
+  "marca": "CSF",
+  "avisLegal": "Contenido informativo, no es asesoramiento financiero.",
+  "titol": "Nvidia · Parte 3: las matemáticas",
+  "musicaSeed": 13,
+  "escenes": [
+    {
+      "tipus": "titol",
+      "etiqueta": "Explicado · Parte 3 de 3",
+      "text": "Cae un 33 %. Sube un 30 %. **¿Estás igual?**",
+      "durada": 3.4,
+      "veu": "Si una acción cae un treinta y tres por ciento y luego sube un treinta, ¿vuelves a estar igual? No."
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "barres",
+      "titol": "Ejemplo con 100 €",
+      "unitat": " €",
+      "destaca": 2,
+      "durada": 6,
+      "dades": [
+        {
+          "etiqueta": "Inicio",
+          "valor": 100
+        },
+        {
+          "etiqueta": "Cae 33 %",
+          "valor": 67
+        },
+        {
+          "etiqueta": "Sube 30 %",
+          "valor": 87
+        }
+      ],
+      "nota": "Ejemplo simplificado: 100 × 0,67 × 1,30 = 87,10 €.",
+      "veu": "Con cien euros, una caída del treinta y tres por ciento te deja en sesenta y siete. Si después sube un treinta, llegas a ochenta y siete. No a cien."
+    },
+    {
+      "tipus": "xifra",
+      "valor": 49,
+      "prefix": "+",
+      "sufix": " %",
+      "text": "hace falta subir para **recuperar** una caída del 33 %",
+      "durada": 4,
+      "nota": "1 ÷ 0,67 − 1 = 49,3 %.",
+      "veu": "Para recuperar una caída del treinta y tres por ciento, hace falta subir casi un cincuenta."
+    },
+    {
+      "tipus": "grafic",
+      "grafic": "barres",
+      "titol": "Lo que hay que subir para recuperarte",
+      "unitat": " %",
+      "destaca": 2,
+      "durada": 6,
+      "dades": [
+        {
+          "etiqueta": "Si cae 10 %",
+          "valor": 11
+        },
+        {
+          "etiqueta": "Si cae 25 %",
+          "valor": 33
+        },
+        {
+          "etiqueta": "Si cae 50 %",
+          "valor": 100
+        }
+      ],
+      "nota": "Subida necesaria = 1 ÷ (1 − caída) − 1. Cifras redondeadas.",
+      "veu": "Y cuanto mayor es la caída, más se dispara. Si pierdes la mitad, necesitas doblar el dinero solo para volver a donde estabas."
+    },
+    {
+      "tipus": "titol",
+      "text": "Por eso importa **no depender** de una sola empresa",
+      "durada": 4.5,
+      "subtext": "Diversificar no elimina el riesgo, pero lo reparte.",
+      "veu": "Por eso importa no depender de una sola empresa. Diversificar no elimina el riesgo, pero lo reparte."
+    },
+    {
+      "tipus": "final",
+      "text": "Las caídas pesan **más** que las subidas.",
+      "subtext": "Envíaselo a quien solo mira cuánto sube una acción. Síguenos para entender tu dinero, sin humo.",
+      "durada": 4.5,
+      "veu": "Recuerda: en bolsa, las caídas pesan más que las subidas. Síguenos para entender tu dinero, sin humo."
+    }
+  ]
+}

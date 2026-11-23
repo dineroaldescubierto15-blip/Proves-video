@@ -30,6 +30,19 @@ Es renderitzen a **GitHub Actions**, així que no cal cap ordinador encès.
    (en entorns sense descàrrega de Chrome: `BROWSER_EXECUTABLE=/opt/pw-browsers/chromium`).
 4. Fes commit i push. Digues a l'usuari que en ~2–4 minuts tindrà l'MP4 a Releases → `videos`.
 
+## Estil CSF i veu oficial
+- `"estil": "csf"` aplica el manual de marca de Capital Sin Filtros: fons #0A0A0A, text #F5F5F2, daurat #F4C542 només per
+  a la xifra/paraula clau (`**...**`), Inter, text a l'esquerra, zona segura (y 260–1480, x 90–930), logo "CSF", sense
+  emojis ni personatges ni fotos. Posa `"marca": "CSF"` i `"avisLegal": "Contenido informativo, no es asesoramiento financiero."`.
+  Les regles de contingut (to, públic, guió, captions) són a `CLAUDE.md` de csf-media: segueix-les.
+- Cada escena pot portar `"veu"`: el guió de la veu en off (castellà, números en lletres, frases curtes; 110–160 paraules
+  per a 35–55 s). En fer push, l'Action genera la veu oficial "csf" cridant, sense modificar-la, la funció de
+  csf-media (`scripts/veu_csf.py`, versió fixada a `CSF_MEDIA_REF` del workflow), la desa a `public/veu/<nom>/`
+  i renderitza el vídeo amb veu i música original. Tarda ~15–20 min per reel. La durada de cada escena s'ajusta a la veu.
+- **Veu bloquejada**: no canviïs paràmetres, perfil ni codi de la veu. Només es permet `"veuSeed"` per repetir una presa.
+- Escena 1: el ganxo complet abans de 2,5 s (és la portada) i durada ≥ 3,2 s.
+- Captions a `textos/<nom>.txt` amb el format de CSF.
+
 ## Notícies reals
 - Busca-les amb WebSearch i obre l'article per comprovar què diu de veritat. Mai no t'inventis un titular.
 - A `titular` posa el titular original o un resum fidel i curt; a `font` el nom del mitjà, a `data` la data de publicació i a `url` l'enllaç.
