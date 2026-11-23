@@ -2,6 +2,7 @@ import React from "react";
 import {
   AbsoluteFill,
   Audio,
+  interpolate,
   Sequence,
   staticFile,
   useCurrentFrame,
@@ -172,6 +173,24 @@ const Presentador: React.FC<{ trams: Tram[]; config: ReelProps["presentador"] }>
   );
 };
 
+// A l'estil sobri (fons pla) l'escena que surt s'apaga a la primera meitat del solapament,
+// perquè el text de l'escena nova no aparegui damunt del vell.
+// I l'escena nova no apareix fins a la segona meitat.
+const SortidaNeta: React.FC<{ activa: boolean; entrada: boolean; durada: number; children: React.ReactNode }> = ({
+  activa,
+  entrada,
+  durada,
+  children,
+}) => {
+  const frame = useCurrentFrame();
+  if (!activa && !entrada) return <>{children}</>;
+  const opt = { extrapolateLeft: "clamp", extrapolateRight: "clamp" } as const;
+  const surt = activa ? interpolate(frame, [durada - TRANSICIO, durada - TRANSICIO / 2], [1, 0], opt) : 1;
+  const entra = entrada ? interpolate(frame, [TRANSICIO / 2 - 1, TRANSICIO / 2 + 2], [0, 1], opt) : 1;
+  const opacity = Math.min(surt, entra);
+  return <AbsoluteFill style={{ opacity }}>{children}</AbsoluteFill>;
+};
+
 export const Reel: React.FC<ReelProps> = (props) => (
   <ProveidorTema estil={props.estil}>
     <ReelInterior {...props} />
@@ -194,7 +213,9 @@ const ReelInterior: React.FC<ReelProps> = ({ colors, escenes, musica, presentado
       <Fons colors={c} />
       {trams.map((t, i) => (
         <Sequence key={i} from={t.from} durationInFrames={t.durada}>
-          <EscenaView escena={t.escena} colors={c} durada={t.durada} avisLegal={i === trams.length - 1 ? avisLegal : undefined} />
+          <SortidaNeta activa={tema.sobri && i < trams.length - 1} entrada={tema.sobri && i > 0} durada={t.durada}>
+            <EscenaView escena={t.escena} colors={c} durada={t.durada} avisLegal={i === trams.length - 1 ? avisLegal : undefined} />
+          </SortidaNeta>
         </Sequence>
       ))}
       {trams.map((t, i) =>
