@@ -13,7 +13,20 @@ Claude crea `reels/<nom>.json`, fa push i GitHub el renderitza.
 **El vídeo:** en 2–4 min el tens a **Releases → `videos`** (enllaç directe a l'MP4) o a **Actions → última run → Artifacts**.
 També pots llançar-ho a mà: *Actions → Renderitza reels → Run workflow*.
 
-## Format del JSON
+## Què pot sortir al reel
+| Tipus | Què és |
+|---|---|
+| `titol`, `punt`, `final` | Text gran que entra lletra a lletra, amb número rodó als punts |
+| `personatge` | Mascota animada (parla, saluda, assenyala, celebra, pensa) amb bombolla de text |
+| `noticia` | Targeta de notícia amb mitjà, data, foto i titular |
+| `grafic` | Gràfic animat de **barres**, **línia** o **donut**, amb la font de les dades |
+| `xifra` | Número gran que compta des de 0 (`+43,6%`) |
+| `imatge` | Foto a pantalla completa amb zoom suau i peu de foto |
+
+A més: `marca` (el teu @ a dalt), `presentador` (mascota petita a la cantonada) i `**paraules**` ressaltades amb marcador.
+Exemple complet: [`reels/demo-pro.json`](reels/demo-pro.json).
+
+## Format bàsic del JSON
 ```json
 {
   "titol": "Nom intern",
